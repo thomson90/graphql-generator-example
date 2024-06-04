@@ -1,8 +1,9 @@
 buildscript {
     ext {
-        springBootVersion = '2.7.18'
-        springCoreVersion = '5.3.31'
-        graphQLPluginVersion = '1.18.9'
+        springBootVersion = '3.2.6'
+        springCoreVersion = '6.1.8'
+        springSecurityVersion = '6.2.4'
+        graphQLPluginVersion = '2.4'
     }
     repositories {
         mavenLocal()
@@ -14,26 +15,14 @@ plugins {
     id 'idea'
     id 'java'
     id 'org.springframework.boot' version "${springBootVersion}"
-    id 'io.spring.dependency-management' version '1.1.0'
-    id "com.graphql_java_generator.graphql-gradle-plugin" version "${graphQLPluginVersion}"
+    id 'io.spring.dependency-management' version '1.1.5'
+    id "com.graphql-java-generator.graphql-gradle-plugin3" version "${graphQLPluginVersion}"
 }
 
 apply from: 'graphql.gradle'
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-}
-
-// The line below adds the generated sources as a java source folder in the IDE
-sourceSets {
-    main.java.srcDir "${buildDir}/generated/sources/graphqlGradlePlugin"
-    main.resources.srcDir "${buildDir}/generated/resources/graphqlGradlePlugin"
-}
-
-idea {
-    module {
-        testSourceDirs += "${buildDir}/generated/sources/graphqlGradlePlugin"
-    }
 }
 
 tasks.register('copyNativeDeps', Copy) {
@@ -87,8 +76,9 @@ dependencies {
     implementation 'com.github.heneke.thymeleaf:thymeleaf-extras-togglz:2.0.1.RELEASE'
 
     implementation 'io.springfox:springfox-swagger2:3.0.0'
+    implementation "jakarta.validation:jakarta.validation-api:3.1.0"
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
 
     implementation platform('software.amazon.awssdk:bom:2.17.292')
 
@@ -112,6 +102,9 @@ dependencies {
 
     testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
 }
+
+sourceSets.main.java.srcDirs += '/build/generated/sources/graphqlGradlePlugin'
+sourceSets.main.resources.srcDirs += '/build/generated/resources/graphqlGradlePlugin'
 
 bootJar {
     mainClass = 'de.myCompany.myProject.Application'

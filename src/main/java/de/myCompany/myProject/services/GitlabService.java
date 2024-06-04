@@ -19,7 +19,8 @@ import de.myCompany.myProject.gitlab.util.QueryExecutor;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.graphql.client.GraphQlClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClientRequestException;
 
@@ -29,7 +30,6 @@ import static java.util.Optional.ofNullable;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Service
-@SuppressWarnings({"UnusedReturnValue", "unused"})
 class GitlabService {
 
   private static final String ERROR_EMPTY_PARAMETER = "Parameter '%s' must not be null or empty!";
@@ -40,9 +40,12 @@ class GitlabService {
 
   private final MutationExecutor mutationExecutor;
 
-  public GitlabService(QueryExecutor queryExecutor, MutationExecutor mutationExecutor) {
+  private final GraphQlClient httpGraphQlClient;
+
+  public GitlabService(QueryExecutor queryExecutor, MutationExecutor mutationExecutor, GraphQlClient httpGraphQlClient) {
     this.queryExecutor = queryExecutor;
     this.mutationExecutor = mutationExecutor;
+    this.httpGraphQlClient = httpGraphQlClient;
   }
 
   public void requireAccess() {
@@ -56,13 +59,15 @@ class GitlabService {
     checkArgument(isNotBlank(branchName), ERROR_EMPTY_PARAMETER, "branchName");
 
     Mutation mutationResponse = callMutation(
-      "mutation CREATE_BRANCH($projectPath: ID!, $sourceBranch: String!, $targetBranch: String!) {" +
-        "  createBranch(" +
-        "    input: {projectPath: $projectPath, name: $sourceBranch, ref: $targetBranch}" +
-        "  ) {" +
-        "    errors" +
-        "  }" +
-        "}",
+      """
+      mutation CREATE_BRANCH($projectPath: ID!, $sourceBranch: String!, $targetBranch: String!) {\
+        createBranch(\
+          input: {projectPath: $projectPath, name: $sourceBranch, ref: $targetBranch}\
+        ) {\
+          errors\
+        }\
+      }\
+      """,
       Map.of(
         "projectPath", projectPath,
         "sourceBranch", branchName,
@@ -231,7 +236,7 @@ class GitlabService {
   }
 
   private ObjectResponse getObjectResponse(String queryResponseDef) throws GraphQLRequestPreparationException {
-    return new Builder(GraphQLRequest.class).withQueryResponseDef(queryResponseDef).build();
+    return new Builder(httpGraphQlClient, GraphQLRequest.class).withQueryResponseDef(queryResponseDef).build();
   }
 
   static class GitlabResult {

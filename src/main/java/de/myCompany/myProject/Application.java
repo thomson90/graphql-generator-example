@@ -1,5 +1,7 @@
 package de.myCompany.myProject;
 
+import com.graphql_java_generator.client.GraphqlClientUtils;
+import de.myCompany.myProject.gitlab.util.QueryExecutor;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +14,7 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = { Application.class, GraphqlClientUtils.class, QueryExecutor.class })
 @Configuration
 @OpenAPIDefinition
 @EnableScheduling
