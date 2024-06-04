@@ -1,0 +1,369 @@
+generateClientCodeConf {
+    schemaFileFolder = 'src/main/resources/graphql/gitlab'
+
+    packageName = 'de.myCompany.myProject.gitlab'
+
+    copyRuntimeSources = false
+    generateDeprecatedRequestResponse = false
+    separateUtilityClasses = true
+
+    customScalars =
+            [
+                    [
+                            graphQLTypeName             : "AlertManagementHttpIntegrationID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "AwardableID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "BoardID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "CiBuildID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "CiJobArtifactID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "CiPipelineID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "CiPipelineScheduleID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "CiRunnerID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "ClustersAgentID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "ClustersAgentTokenID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "ClustersClusterID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "ContainerRepositoryID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "CustomEmojiID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "CustomerRelationsContactID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "CustomerRelationsOrganizationID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "DependencyProxyManifestID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "DesignManagementDesignAtVersionID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "DesignManagementDesignID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "DesignManagementVersionID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "DiffNoteID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "DiscussionID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "EnvironmentID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "GitlabErrorTrackingDetailedErrorID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "GlobalID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "GroupID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "IncidentManagementTimelineEventID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "IntegrationsPrometheusID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "IssuableID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "IssueID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "JobID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "CommitStatusID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "LabelID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "ListID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "MergeRequestID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "MetricsDashboardAnnotationID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "MilestoneID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "NoteID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "NoteableID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesConanFileMetadatumID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesConanMetadatumID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesDependencyID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesDependencyLinkID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesMavenMetadatumID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesNugetDependencyLinkMetadatumID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesNugetMetadatumID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesPackageFileID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesPackageID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "PackagesPypiMetadatumID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "ProjectID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "ReleaseID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "ReleasesLinkID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "SnippetID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "TerraformStateID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "TimelogID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "TodoID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "TodoableID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "UploadID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "UserID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "UsersSavedReplyID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "IssueID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "WorkItemID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "WorkItemsTypeID",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+
+                    [
+                            graphQLTypeName             : "BigInt",
+                            javaType                    : "java.math.BigInteger",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "Color",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "Date",
+                            javaType                    : "java.util.Date",
+                            graphQLScalarTypeStaticField: "com.graphql_java_generator.customscalars.GraphQLScalarTypeDate.Date"
+                    ],
+                    [
+                            graphQLTypeName             : "Duration",
+                            javaType                    : "java.lang.Float",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLFloat"
+                    ],
+                    [
+                            graphQLTypeName             : "ISO8601Date",
+                            javaType                    : "java.util.Date",
+                            graphQLScalarTypeStaticField: "com.graphql_java_generator.customscalars.GraphQLScalarTypeDate.Date"
+                    ],
+                    [
+                            graphQLTypeName             : "JSON",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "Time",
+                            javaType                    : "java.util.Date",
+                            graphQLScalarTypeStaticField: "com.graphql_java_generator.customscalars.GraphQLScalarTypeDateTime.DateTime"
+                    ],
+                    [
+                            graphQLTypeName             : "UntrustedRegexp",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+                    [
+                            graphQLTypeName             : "Upload",
+                            javaType                    : "java.lang.String",
+                            graphQLScalarTypeStaticField: "graphql.Scalars.GraphQLString"
+                    ],
+            ]
+}

@@ -1,0 +1,16 @@
+.DS_Store
+
+application-local.properties
+
+.idea
+*.ipr
+*.iws
+*.iml
+
+.gradle
+build
+
+FrontendTest.md
+
+bin/
+out/

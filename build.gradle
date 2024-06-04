@@ -1,0 +1,147 @@
+buildscript {
+    ext {
+        springBootVersion = '2.7.18'
+        springCoreVersion = '5.3.31'
+        springSecurityVersion = '5.8.12'
+        graphQLPluginVersion = '1.18.9'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'idea'
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version '1.1.0'
+    id "com.graphql_java_generator.graphql-gradle-plugin" version "${graphQLPluginVersion}"
+}
+
+apply from: 'graphql.gradle'
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
+
+// The line below adds the generated sources as a java source folder in the IDE
+sourceSets {
+    main.java.srcDir "${buildDir}/generated/sources/graphqlGradlePlugin"
+    main.resources.srcDir "${buildDir}/generated/resources/graphqlGradlePlugin"
+}
+
+idea {
+    module {
+        testSourceDirs += "${buildDir}/generated/sources/graphqlGradlePlugin"
+    }
+}
+
+tasks.register('copyNativeDeps', Copy) {
+    from(configurations.runtimeClasspath) {
+        include "*.dylib"
+        include "*.so"
+        include "*.dll"
+    }
+    into 'build/native-libs'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:deprecation" << "-Xlint:unchecked"
+
+    dependsOn 'copyNativeDeps'
+}
+
+processResources.configure {
+    doLast {
+        copy {
+            from "src/tile-management-frontend/dist" into "$buildDir/resources/main/public/tile-management"
+        }
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-validation:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-oauth2-client:${springBootVersion}"
+    implementation 'org.modelmapper:modelmapper:3.1.0'
+
+    // note: 4.4.0 currently throws java.lang.UnsupportedOperationException
+
+    implementation 'org.togglz:togglz-spring-boot-starter:3.2.1'
+    implementation 'org.togglz:togglz-console:3.2.1'
+    implementation 'org.togglz:togglz-spring-security:3.2.1'
+    implementation 'com.github.heneke.thymeleaf:thymeleaf-extras-togglz:2.0.1.RELEASE'
+
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+
+    implementation platform('software.amazon.awssdk:bom:2.17.292')
+
+
+    implementation 'com.graphql-java:graphql-java:20.4'
+    implementation "com.graphql-java-generator:graphql-java-client-runtime:${graphQLPluginVersion}"
+
+    implementation 'one.util:streamex:0.8.1'
+
+    // override - prevent vulnerabilities
+    implementation "org.springframework:spring-core:${springCoreVersion}"
+    implementation "org.springframework:spring-web:${springCoreVersion}"
+    implementation "org.springframework:spring-webflux:${springCoreVersion}"
+
+    implementation "org.springframework.security:spring-security-core:${springSecurityVersion}"
+    implementation "org.springframework.security:spring-security-config:${springSecurityVersion}"
+    implementation "org.springframework.security:spring-security-crypto:${springSecurityVersion}"
+    implementation "org.springframework.security:spring-security-oauth2-core:${springSecurityVersion}"
+    implementation "org.springframework.security:spring-security-oauth2-client:${springSecurityVersion}"
+    implementation "org.springframework.security:spring-security-oauth2-jose:${springSecurityVersion}"
+    implementation "org.springframework.security:spring-security-web:${springSecurityVersion}"
+
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'org.yaml:snakeyaml:1.33'
+    implementation 'org.eclipse.jetty:jetty-bom:11.0.15'
+    implementation 'com.fasterxml.woodstox:woodstox-core:6.4.0'
+    implementation platform('com.fasterxml.jackson:jackson-bom:2.14.1')
+    // end override
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    testImplementation "org.springframework.security:spring-security-test:${springSecurityVersion}"
+}
+
+bootJar {
+    mainClass = 'de.myCompany.myProject.Application'
+    launchScript()
+}
+
+bootRun {
+    systemProperties = System.properties
+}
+
+springBoot {
+    buildInfo()
+}
+
+test {
+    useJUnitPlatform()
+    maxParallelForks = Runtime.runtime.availableProcessors() ?: 1
+}
+
+// Change with SpringBoot 2.5: Don't build a plain-jar.
+jar {
+    enabled = false
+}

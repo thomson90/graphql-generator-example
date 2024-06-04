@@ -1,0 +1,10 @@
+.git
+.idea
+.gradle
+
+aws
+build
+gradle
+
+src/main/node_modules
+src/tile-management-frontend/node_modules
