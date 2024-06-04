@@ -2,7 +2,6 @@ buildscript {
     ext {
         springBootVersion = '2.7.18'
         springCoreVersion = '5.3.31'
-        springSecurityVersion = '5.8.12'
         graphQLPluginVersion = '1.18.9'
     }
     repositories {
@@ -104,14 +103,6 @@ dependencies {
     implementation "org.springframework:spring-web:${springCoreVersion}"
     implementation "org.springframework:spring-webflux:${springCoreVersion}"
 
-    implementation "org.springframework.security:spring-security-core:${springSecurityVersion}"
-    implementation "org.springframework.security:spring-security-config:${springSecurityVersion}"
-    implementation "org.springframework.security:spring-security-crypto:${springSecurityVersion}"
-    implementation "org.springframework.security:spring-security-oauth2-core:${springSecurityVersion}"
-    implementation "org.springframework.security:spring-security-oauth2-client:${springSecurityVersion}"
-    implementation "org.springframework.security:spring-security-oauth2-jose:${springSecurityVersion}"
-    implementation "org.springframework.security:spring-security-web:${springSecurityVersion}"
-
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'org.yaml:snakeyaml:1.33'
     implementation 'org.eclipse.jetty:jetty-bom:11.0.15'
@@ -120,7 +111,6 @@ dependencies {
     // end override
 
     testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-    testImplementation "org.springframework.security:spring-security-test:${springSecurityVersion}"
 }
 
 bootJar {
