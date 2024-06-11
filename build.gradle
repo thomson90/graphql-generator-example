@@ -40,14 +40,6 @@ tasks.withType(JavaCompile).configureEach {
     dependsOn 'copyNativeDeps'
 }
 
-processResources.configure {
-    doLast {
-        copy {
-            from "src/tile-management-frontend/dist" into "$buildDir/resources/main/public/tile-management"
-        }
-    }
-}
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
@@ -67,6 +59,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-oauth2-client:${springBootVersion}"
     implementation 'org.modelmapper:modelmapper:3.1.0'
+    implementation 'com.graphql-java:graphql-java-extended-scalars:20.2'
 
     // note: 4.4.0 currently throws java.lang.UnsupportedOperationException
 
@@ -87,19 +80,7 @@ dependencies {
     implementation "com.graphql-java-generator:graphql-java-client-runtime:${graphQLPluginVersion}"
 
     implementation 'one.util:streamex:0.8.1'
-
-    // override - prevent vulnerabilities
-    implementation "org.springframework:spring-core:${springCoreVersion}"
-    implementation "org.springframework:spring-web:${springCoreVersion}"
-    implementation "org.springframework:spring-webflux:${springCoreVersion}"
-
     implementation 'com.google.guava:guava:31.1-jre'
-    implementation 'org.yaml:snakeyaml:1.33'
-    implementation 'org.eclipse.jetty:jetty-bom:11.0.15'
-    implementation 'com.fasterxml.woodstox:woodstox-core:6.4.0'
-    implementation platform('com.fasterxml.jackson:jackson-bom:2.14.1')
-    // end override
-
     testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
 }
 
@@ -109,10 +90,6 @@ sourceSets.main.resources.srcDirs += '/build/generated/resources/graphqlGradlePl
 bootJar {
     mainClass = 'de.myCompany.myProject.Application'
     launchScript()
-}
-
-bootRun {
-    systemProperties = System.properties
 }
 
 springBoot {
