@@ -3,7 +3,7 @@ buildscript {
         springBootVersion = '3.2.6'
         springCoreVersion = '6.1.8'
         springSecurityVersion = '6.2.4'
-        graphQLPluginVersion = '2.4'
+        graphQLPluginVersion = '2.7'
     }
     repositories {
         mavenLocal()
